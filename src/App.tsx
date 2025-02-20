@@ -1,7 +1,7 @@
-import { useState } from "react";
 import BookList from "./components/BookList";
 import Header from "./components/Header";
 import LoginForm from "./components/LoginForm";
+import useAuth from "./hooks/useAuth";
 
 const user = {
   name: "Admin",
@@ -10,8 +10,7 @@ const user = {
 }
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
-  const [error, setError] = useState('')
+  const { isLoggedIn, setIsLoggedIn, setError, error } = useAuth()
 
   function handleLogin(email: string, password: string) {
     if (email !== user.email || password !== user.password) {
@@ -27,20 +26,20 @@ export default function App() {
     setIsLoggedIn(false)
   }
 
-  function render() {
-    // if (isLoggedIn) {
-    //   return <BookList />
-    // } else {
-    //   return <LoginForm onLogin={handleLogin} />
-    // }
+  // function render() {
+  //   // if (isLoggedIn) {
+  //   //   return <BookList />
+  //   // } else {
+  //   //   return <LoginForm onLogin={handleLogin} />
+  //   // }
 
-    switch (isLoggedIn) {
-      case true:
-        return <BookList />
-      case false:
-        return <LoginForm onLogin={handleLogin} />
-    }
-  }
+  //   switch (isLoggedIn) {
+  //     case true:
+  //       return <BookList />
+  //     case false:
+  //       return <LoginForm onLogin={handleLogin} />
+  //   }
+  // }
 
   return (
     <div>

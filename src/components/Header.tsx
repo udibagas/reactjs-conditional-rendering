@@ -1,5 +1,3 @@
-import Clock from "./Clock";
-
 type User = {
   name: string;
   email: string;
@@ -18,11 +16,9 @@ export default function Header({ user, onLogout }: HeaderProps) {
         Book Library
       </div>
 
-      {/* <Clock /> */}
-
       <div className="flex gap-4 justify-center items-center">
         <div>Welcome, {user.name}!</div>
-        <a href="#" onClick={onLogout}>Logout</a>
+        <a href="#" onClick={(e) => { e.preventDefault(); onLogout() }}>Logout</a>
         <button className="border border-white rounded py-1 px-3 cursor-pointer" onClick={() => {
           document.body.classList.toggle('dark')
         }}>Toggle Theme</button>

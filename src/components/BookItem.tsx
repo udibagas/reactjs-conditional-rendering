@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from "./UI/Button";
 
 type Book = {
   id: number;
@@ -13,13 +13,13 @@ export default function BookItem({ book }: { book: Book }) {
   }
 
   return (
-    <div className="border border-slate-300 w-[320px] rounded-lg" key={book.id}>
+    <>
       <img src={book.imageUrl} alt="" />
-      <div className="p-4">
+      <div className="p-4 flex flex-col justify-between items-baseline">
         <h3 className="font-bold dark:text-white">{book.title}</h3>
         <div className="text-slate-400 mb-4">{book.author}</div>
-        <Button onSmash={handleReadMore} label="Read More" />
+        <Button onClick={handleReadMore} label="Read More" />
       </div>
-    </div>
+    </>
   )
 }
