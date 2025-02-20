@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import books from "../stores/books.json";
 import BookItem from "./BookItem";
 
 export default function BookList() {
+  console.log('BookList rendered')
   const [filteredBooks, setFilteredBooks] = useState(books);
-  const [author, setAuthor] = useState('')
+  // const [author, setAuthor] = useState('')
+  const authorRef = useRef<HTMLSelectElement>(null)
+  const logRef = useRef<string[]>([])
+  // const logRef: string[] = []
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const keyword = e.target.value
@@ -22,24 +26,24 @@ export default function BookList() {
   }
 
   // dijalankan ketika komponen pertama kali di-render
-  useEffect(() => {
-    console.log('Component is mounted')
-    // fetch external data
-  }, [])
+  // useEffect(() => {
+  //   console.log('Component is mounted')
+  //   // fetch external data
+  // }, [])
 
-  useEffect(() => {
-    console.log('Dijalankan ketika author berubah', author)
-    if (author === '') {
-      setFilteredBooks(books)
-      return
-    }
+  // useEffect(() => {
+  //   console.log('Dijalankan ketika author berubah', author)
+  //   if (author === '') {
+  //     setFilteredBooks(books)
+  //     return
+  //   }
 
-    const filtered = books.filter((book) => {
-      return book.author === author
-    })
+  //   const filtered = books.filter((book) => {
+  //     return book.author === author
+  //   })
 
-    setFilteredBooks(filtered)
-  }, [author])
+  //   setFilteredBooks(filtered)
+  // }, [author])
 
   return (
     <>
@@ -54,8 +58,7 @@ export default function BookList() {
         />
 
         <select
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
+          ref={authorRef}
           className="border border-slate-200 py-2 px-4 rounded-lg w-[400px] dark:bg-slate-800 dark:text-white">
           <option value="">--Select Author--</option>
           <option value="Andrew Hunt and David Thomas">
@@ -71,12 +74,32 @@ export default function BookList() {
             Douglas Crockford
           </option>
         </select>
+
+        <button className="ml-2 bg-blue-500 text-white rounded-md py-2 px-4" onClick={(e) => {
+          console.log(authorRef.current?.value)
+          const author = authorRef.current?.value
+
+          const filtered = books.filter((book) => {
+            return book.author === author
+          })
+
+          setFilteredBooks(filtered)
+
+        }}>Filter</button>
       </div>
 
       <div className="w-2/3 m-auto flex flex-wrap gap-4 justify-center">
         {filteredBooks.map((book) => {
           return (
-            <BookItem book={book} key={book.id} />
+            <div key={book.id} onClick={() => {
+              console.log('Book clicked', book.title)
+              logRef.current.push(book.title)
+              console.log(logRef.current)
+              // logRef.push(book.title)
+              // console.log(logRef)
+            }}>
+              <BookItem book={book} />
+            </div>
           )
         })}
       </div>

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 type LoginFormProps = {
   onLogin: (email: string, password: string) => void;
@@ -8,11 +8,16 @@ type LoginFormProps = {
 export default function LoginForm({ onLogin, error }: LoginFormProps) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const emailRef = useRef<HTMLInputElement>(null)
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     onLogin(email, password)
   }
+
+  useEffect(() => {
+    emailRef.current?.focus()
+  }, [])
 
   return (
     <div className="flex justify-center items-center h-screen bg-slate-100">
@@ -24,6 +29,7 @@ export default function LoginForm({ onLogin, error }: LoginFormProps) {
           <label htmlFor="Email" className="font-bold mb-2 block">Email</label>
           <input
             value={email}
+            ref={emailRef}
             onChange={(e) => setEmail(e.target.value)}
             type="text"
             placeholder="Email"

@@ -1,3 +1,5 @@
+import Clock from "./Clock";
+
 type User = {
   name: string;
   email: string;
@@ -15,6 +17,8 @@ export default function Header({ user, onLogout }: HeaderProps) {
       <div className="text-2xl">
         Book Library
       </div>
+
+      {/* <Clock /> */}
 
       <div className="flex gap-4 justify-center items-center">
         <div>Welcome, {user.name}!</div>
