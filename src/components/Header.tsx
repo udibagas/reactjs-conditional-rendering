@@ -16,8 +16,12 @@ export default function Header({ user, onLogout }: HeaderProps) {
         Book Library
       </div>
 
-      <div className="float-right">
-        Welcome, {user.name}! | <a href="#" onClick={onLogout}>Logout</a>
+      <div className="flex gap-4 justify-center items-center">
+        <div>Welcome, {user.name}!</div>
+        <a href="#" onClick={onLogout}>Logout</a>
+        <button className="border border-white rounded py-1 px-3 cursor-pointer" onClick={() => {
+          document.body.classList.toggle('dark')
+        }}>Toggle Theme</button>
       </div>
     </header>
   )

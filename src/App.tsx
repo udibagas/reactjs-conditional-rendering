@@ -10,7 +10,7 @@ const user = {
 }
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
   const [error, setError] = useState('')
 
   function handleLogin(email: string, password: string) {
@@ -43,9 +43,9 @@ export default function App() {
   }
 
   return (
-    <>
+    <div>
       {isLoggedIn && <Header user={user} onLogout={handleLogout} />}
       {isLoggedIn ? <BookList /> : <LoginForm onLogin={handleLogin} error={error} />}
-    </>
+    </div>
   )
 }
