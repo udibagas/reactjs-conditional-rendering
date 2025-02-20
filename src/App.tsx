@@ -11,14 +11,15 @@ const user = {
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [error, setError] = useState('')
 
   function handleLogin(email: string, password: string) {
     if (email !== user.email || password !== user.password) {
-      alert("Invalid credentials")
+      setError('Invalid username or password')
       return
     }
 
-    console.log(email, password)
+    setError('')
     setIsLoggedIn(true)
   }
 
@@ -44,7 +45,7 @@ export default function App() {
   return (
     <>
       {isLoggedIn && <Header user={user} onLogout={handleLogout} />}
-      {isLoggedIn ? <BookList /> : <LoginForm onLogin={handleLogin} />}
+      {isLoggedIn ? <BookList /> : <LoginForm onLogin={handleLogin} error={error} />}
     </>
   )
 }
