@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import MainLayout from "./layout/MainLayout";
 import Book from "./pages/Book";
 import ProtectedRoute from "./components/ProtectedRoute";
+import NotFound from "./pages/NotFound";
 export default function App() {
 
   return (
@@ -17,7 +18,7 @@ export default function App() {
 
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<Register />} />
-        <Route path="*" element={<h1>Not Found</h1>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

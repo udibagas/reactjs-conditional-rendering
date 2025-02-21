@@ -11,7 +11,7 @@ export default function Book() {
   const book: BookType = books.find(book => book.id === parseInt(id as string))!
 
   return (
-    <div className="container mx-auto my-8">
+    <div className="w-2/3 flex gap-4 m-auto my-8 dark:text-white">
       <img src={book.imageUrl} alt="" />
       <div className="p-4 flex flex-col justify-between items-baseline">
         <h3 className="font-bold dark:text-white">{book.title}</h3>
