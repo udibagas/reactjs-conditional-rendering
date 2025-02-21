@@ -1,44 +1,16 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import Button from "./UI/Button";
 import Input from "./UI/Input";
 import Label from "./UI/Label";
-import { z } from 'zod'
+import useAuth from "../hooks/useAuth";
 
-type LoginFormProps = {
-  onLogin: (email: string, password: string) => void;
-  error?: string;
-}
-
-export default function LoginForm({ onLogin, error }: LoginFormProps) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+export default function LoginForm() {
   const emailRef = useRef<HTMLInputElement | null>(null)
-  const [errors, setErrors] = useState<Record<string, string>>({})
+  const { error, errors, login, email, setEmail, password, setPassword } = useAuth()
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    console.log(email, password)
-
-    const schema = z.object({
-      email: z.string().email(),
-      password: z.string().min(6)
-    })
-
-    const result = schema.safeParse({ email, password })
-
-    if (!result.success) {
-      const formattedError = Object.fromEntries(
-        Object.entries(result.error.flatten().fieldErrors).map(([key, value]) => {
-          return [key, value?.[0] || '']
-        })
-      )
-
-      setErrors(formattedError)
-      return
-    }
-
-    setErrors({})
-    onLogin(email, password)
+    login(email, password)
   }
 
   useEffect(() => {

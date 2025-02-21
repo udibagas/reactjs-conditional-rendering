@@ -47,7 +47,7 @@ export default function Input({
           `
         }
       />
-      {error && <div className="m-2 text-sm text-red-500">{error}</div>}
+      {error && <div className="mt-1 text-sm text-red-500">{error}</div>}
     </>
 
   );
