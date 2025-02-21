@@ -1,16 +1,34 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import books from "../stores/books.json";
 import BookItem from "../components/BookItem";
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
+import { useSearchParams } from "react-router";
 
 export default function BookList() {
   console.log('BookList rendered')
   const [filteredBooks, setFilteredBooks] = useState(books);
-  // const [author, setAuthor] = useState('')
   const authorRef = useRef<HTMLSelectElement>(null)
   const logRef = useRef<string[]>([])
-  // const logRef: string[] = []
+
+  const [searchParams] = useSearchParams()
+
+  useEffect(() => {
+    const keyword = searchParams.get('keyword')
+
+    if (!keyword) {
+      setFilteredBooks(books)
+      return
+    }
+
+    const filtered = books.filter((book) => {
+      return book.title.toLowerCase().includes(keyword.toLowerCase())
+    })
+
+    setFilteredBooks(filtered)
+  }, [searchParams])
+
+
 
   function handleChange(value: string) {
     const keyword = value

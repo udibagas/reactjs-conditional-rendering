@@ -47,7 +47,8 @@ const useAuth = () => {
 
     setIsLoggedIn(true);
     setUser(validUser);
-    navigate("/");
+    localStorage.setItem("user", JSON.stringify(validUser));
+    navigate("/", { replace: true });
   };
 
   return {

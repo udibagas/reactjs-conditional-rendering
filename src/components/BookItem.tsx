@@ -1,15 +1,18 @@
+import { useNavigate } from "react-router";
 import Button from "./UI/Button";
 
-type Book = {
+export type BookType = {
   id: number;
   title: string;
   author: string;
   imageUrl: string;
 }
 
-export default function BookItem({ book }: { book: Book }) {
+export default function BookItem({ book }: { book: BookType }) {
+  const navigate = useNavigate()
+
   function handleReadMore() {
-    alert(book.title)
+    navigate(`/books/${book.id}`)
   }
 
   return (
