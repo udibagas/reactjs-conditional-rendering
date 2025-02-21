@@ -16,7 +16,7 @@ export default function App() {
   return (
     <div>
       {isLoggedIn && <Header user={user} />}
-      {isLoggedIn ? <BookList /> : <LoginForm />}
+      {isLoggedIn ? <BookList /> : <Register />}
     </div>
   )
 }
