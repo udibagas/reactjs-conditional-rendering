@@ -31,7 +31,17 @@ export default function Input({
         type={type}
         placeholder={placeholder}
         className={
-          `border border-slate-200 py-1 px-3 rounded-md dark:bg-slate-800 dark:text-white ${className}`
+          `border 
+          border-slate-200
+          py-1
+          px-3
+          rounded-md
+          dark:bg-slate-800
+          dark:text-white 
+          hover:border-slate-300
+          hover:bg-slate-50
+          focus:border-slate-300
+          ${className}`
         }
       />
     </>
