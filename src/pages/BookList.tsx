@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import books from "../stores/books.json";
-import BookItem from "./BookItem";
-import Input from "./UI/Input";
-import Button from "./UI/Button";
+import BookItem from "../components/BookItem";
+import Input from "../components/UI/Input";
+import Button from "../components/UI/Button";
 
 export default function BookList() {
   console.log('BookList rendered')

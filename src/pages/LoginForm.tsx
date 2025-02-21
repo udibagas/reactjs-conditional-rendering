@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react"
-import Button from "./UI/Button";
-import Input from "./UI/Input";
-import Label from "./UI/Label";
+import Button from "../components/UI/Button";
+import Input from "../components/UI/Input";
+import Label from "../components/UI/Label";
 import useAuth from "../hooks/useAuth";
+import { NavLink } from "react-router";
 
 export default function LoginForm() {
   const emailRef = useRef<HTMLInputElement | null>(null)
@@ -49,6 +50,10 @@ export default function LoginForm() {
 
         <div className="mt-8">
           <Button label="Login" className='w-full' />
+        </div>
+
+        <div>
+          <p className="mt-4 text-center">Don't have an account? <NavLink to="/register" className="text-blue-500">Register</NavLink></p>
         </div>
       </form>
     </div>

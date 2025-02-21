@@ -1,22 +1,17 @@
-import BookList from "./components/BookList";
-import Header from "./components/Header";
-import LoginForm from "./components/LoginForm";
-import Register from "./components/Register";
-import useAuth from "./hooks/useAuth";
-
-const user = {
-  name: "Admin",
-  email: "admin@mail.com",
-  password: "admin123"
-}
-
+import { BrowserRouter, Route, Routes } from "react-router";
+import BookList from "./pages/BookList";
+import LoginForm from "./pages/LoginForm";
+import Register from "./pages/Register";
+import MainLayout from "./layout/MainLayout";
 export default function App() {
-  const { isLoggedIn } = useAuth()
 
   return (
-    <div>
-      {isLoggedIn && <Header user={user} />}
-      {isLoggedIn ? <BookList /> : <Register />}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainLayout><BookList /></MainLayout>} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
   )
 }

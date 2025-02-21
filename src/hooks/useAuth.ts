@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { z } from "zod";
 
 const validUser = {
@@ -14,6 +15,7 @@ const useAuth = () => {
   const [user, setUser] = useState({});
   const [error, setError] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const navigate = useNavigate();
 
   const login = (email: string, password: string) => {
     const schema = z.object({
@@ -45,7 +47,7 @@ const useAuth = () => {
 
     setIsLoggedIn(true);
     setUser(validUser);
-    alert("Login success");
+    navigate("/");
   };
 
   return {

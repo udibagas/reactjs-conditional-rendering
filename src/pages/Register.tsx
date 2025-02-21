@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod'
+import { NavLink } from 'react-router';
 
 interface RegisterData {
   name: string;
@@ -99,6 +100,10 @@ export default function Register() {
         <button className="mt-4 border border-blue-500 text-blue-500 py-1 px-3 rounded-md cursor-pointer">
           Register
         </button>
+
+        <div>
+          <p className="mt-4 text-center">Have an account? <NavLink to="/login" className="text-blue-500">Login</NavLink></p>
+        </div>
       </form>
     </div>
   );
