@@ -6,8 +6,8 @@ import MainLayout from "./layout/MainLayout";
 import Book from "./pages/Book";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
-export default function App() {
 
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
