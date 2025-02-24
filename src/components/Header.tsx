@@ -26,6 +26,7 @@ export default function Header() {
         </div>
 
         <NavLink to='/posts' className={({ isActive }) => isActive ? 'underline text-red-400' : ''}>Posts</NavLink>
+        <NavLink to='/countries' className={({ isActive }) => isActive ? 'underline text-red-400' : ''}>Countries</NavLink>
       </div>
 
       <div className="flex gap-4 justify-center items-center">
