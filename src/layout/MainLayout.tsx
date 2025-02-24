@@ -1,7 +1,11 @@
 import React from "react";
 import Header from "../components/Header";
 
-export default function MainLayout({ children }: { children: React.ReactNode }) {
+type MainLayoutProps = {
+  children: React.ReactNode,
+}
+
+export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <>
       <Header />
