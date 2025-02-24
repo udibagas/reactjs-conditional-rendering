@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Post {
   id: number;
@@ -12,15 +12,13 @@ export default () => {
   const [data, setData] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const ignore = useRef(false);
 
   useEffect(() => {
-    const controller = new AbortController();
-
     async function fetchPosts() {
       try {
         const response = await axios.get<Post[]>(
-          "https://jsonplaceholder.typicode.com/posts",
-          { signal: controller.signal, timeout: 3000 }
+          "https://jsonplaceholder.typicode.com/posts"
         );
         setData(response.data);
       } catch (error) {
@@ -30,16 +28,11 @@ export default () => {
       setLoading(false);
     }
 
-    fetchPosts();
-
-    // return () => {
-    //   controller.abort("Operation canceled by the user.");
-    // };
+    if (!ignore.current) {
+      fetchPosts();
+      ignore.current = true;
+    }
   }, []);
 
-  return {
-    data,
-    loading,
-    error,
-  };
+  return { data, loading, error };
 };
