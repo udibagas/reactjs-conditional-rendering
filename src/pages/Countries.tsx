@@ -78,22 +78,22 @@ export default function Countries() {
   // }, [])
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div className="text-center mt-4">Loading...</div>
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>
+    return <div className="text-center mt-4">Error: {error.message}</div>
   }
 
   return (
-    <div className="text-center">
-      <h1>Countries</h1>
+    <div className="w-[90%] m-auto my-8">
+      <h1 className="text-3xl mb-8 dark:text-slate-50">Countries</h1>
 
-      <ul>
+      <div className="flex flex-wrap gap-2">
         {countries.map((country: Country) => (
-          <li key={country.code}>{country.name} {country.emoji}</li>
+          <div className="border border-slate-300 py-2 px-4 dark:text-slate-50" key={country.code}>{country.emoji} {country.name} </div>
         ))}
-      </ul>
+      </div>
     </div>
   )
 }
