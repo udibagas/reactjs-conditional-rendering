@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router";
 import Button from "./UI/Button";
-import useLocale from "../hooks/useLocale";
 import { useSelector } from "react-redux";
 import { RootState } from "../stores/store";
 
