@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const localeSlice = createSlice({
   name: "locale",
   initialState: {
-    locale: "en",
+    locale: "id",
   },
   // action untuk ngubah state
   reducers: {

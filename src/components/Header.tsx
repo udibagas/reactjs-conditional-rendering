@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router"
+import { Link, NavLink, useNavigate } from "react-router"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../stores/store"
 import { setLocale } from "../stores/localeSlice"
@@ -17,10 +17,15 @@ export default function Header() {
 
   return (
     <header className="bg-blue-500 text-white p-4 flex justify-between items-center">
-      <div className="text-2xl">
-        <Link to="/">
-          {locale == 'id' ? 'Pustaka Buku' : 'Book Library'}
-        </Link>
+      <div className="flex gap-5 items-center">
+        <div className="text-2xl">
+
+          <Link to="/">
+            {locale == 'id' ? 'Pustaka Buku' : 'Book Library'}
+          </Link>
+        </div>
+
+        <NavLink to='/posts' className={({ isActive }) => isActive ? 'underline text-red-400' : ''}>Posts</NavLink>
       </div>
 
       <div className="flex gap-4 justify-center items-center">
