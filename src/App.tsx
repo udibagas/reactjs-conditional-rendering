@@ -6,12 +6,12 @@ import MainLayout from "./layout/MainLayout";
 import Book from "./pages/Book";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
-import LangProvider from "./providers/LangProvider";
 import { Provider } from "react-redux";
+import { store } from "./stores/store";
 
 export default function App() {
   return (
-    <LangProvider>
+    <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainLayout><ProtectedRoute /></MainLayout>}>
@@ -24,6 +24,6 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </LangProvider>
+    </Provider>
   )
 }

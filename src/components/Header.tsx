@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router"
-import useLocale from "../hooks/useLocale"
-// import { useSelector } from "react-redux"
-// import { RootState } from "../stores/store"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../stores/store"
+import { setLocale } from "../stores/localeSlice"
 
 export default function Header() {
   const navigate = useNavigate()
   const user = JSON.parse(localStorage.getItem('user') ?? '{}')
-  const { locale, setLocale } = useLocale()
-  // const locale = useSelector((state: RootState) => state.locale.locale)
+  const locale = useSelector((state: RootState) => state.locale.locale)
+  const dispatch = useDispatch()
 
   function logout(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault()
@@ -34,7 +34,7 @@ export default function Header() {
           {locale == 'id' ? 'Ubah Tema' : 'Toggle Theme'}
         </button>
 
-        <select value={locale} onChange={(e) => setLocale(e.target.value)}>
+        <select value={locale} onChange={(e) => dispatch(setLocale(e.target.value))}>
           <option value="id">Indonesia</option>
           <option value="en">English</option>
         </select>

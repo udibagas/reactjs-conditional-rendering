@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router";
 import Button from "./UI/Button";
 import useLocale from "../hooks/useLocale";
+import { useSelector } from "react-redux";
+import { RootState } from "../stores/store";
 
 export type BookType = {
   id: number;
@@ -12,7 +14,8 @@ export type BookType = {
 
 export default function BookItem({ book }: { book: BookType }) {
   const navigate = useNavigate()
-  const { locale } = useLocale()
+  // const { locale } = useLocale()
+  const locale = useSelector((state: RootState) => state.locale.locale)
 
   function handleReadMore() {
     navigate(`/books/${book.id}`)
