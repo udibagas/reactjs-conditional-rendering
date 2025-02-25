@@ -1,8 +1,10 @@
 import { createContext } from "react";
 
-const LangContext = createContext({
-  locale: 'id',
-  setLocale: (value: string) => { }
-})
+interface LangContextType {
+  locale: string,
+  setLocale: (value: string) => void
+}
+
+const LangContext = createContext({} as LangContextType)
 
 export default LangContext
